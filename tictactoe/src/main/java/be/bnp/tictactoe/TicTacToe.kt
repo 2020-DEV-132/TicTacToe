@@ -33,6 +33,10 @@ class TicTacToe internal constructor(
         if (board.hasThreeInARow) {
             listener.onEvent(TicTacToeEvent.GameOver.Winner(currSym))
         }
+
+        if (!board.hasBlanks) {
+            listener.onEvent(TicTacToeEvent.GameOver.Tie)
+        }
     }
 
     interface TicTacToeEventListener {

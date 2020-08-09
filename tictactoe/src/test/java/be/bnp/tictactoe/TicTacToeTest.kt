@@ -80,5 +80,26 @@ class TicTacToeTest : FreeSpec() {
                 }
             }
         }
+
+        "A game of TicTacToe with one blank space left" - {
+            val sut = TicTacToe(
+                listener, Board(
+                    listOf(
+                        listOf(Symbol.Blank, Symbol.X, Symbol.O),
+                        listOf(Symbol.X,     Symbol.O, Symbol.X),
+                        listOf(Symbol.X,     Symbol.O, Symbol.X)
+                    )
+                )
+            )
+
+            "when adding the last non winning move" - {
+                sut.addSymbol(Coordinate(0, 0))
+                "it should notify us of a tie" - {
+                    verify {
+                        listener.onEvent(TicTacToeEvent.GameOver.Tie)
+                    }
+                }
+            }
+        }
     }
 }
