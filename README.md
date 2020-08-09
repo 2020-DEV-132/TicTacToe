@@ -25,10 +25,6 @@ You can choose to run it from Android Studio or not
 - Click the play icon or <kbd>CMD</kbd> + <kbd>R</kbd>
 - Grab a coffee
 
-#### Tests
-- Open a terminal in the root of the project
-- Run `./gradlew test`
-
 ### Command Line
 - Navigate to the root of the project
 - Run `./gradlew installDebug`
@@ -37,3 +33,4 @@ You can choose to run it from Android Studio or not
 ### Tests
 - Open a terminal in the root of the project
 - Run `./gradlew test`
+- Run `./gradlew :app:connectedCheck` to run the ui tests, make sure a device or emulator is connected
