@@ -17,7 +17,7 @@ Prerequisites:
 - Have an Android emulator or real device attached to your pc with developer options enabled.
 - Optionally installed Android Studio
 
-Download the project.  
+Download the project.
 You can choose to run it from Android Studio or not
 
 ### Android Studio
@@ -25,7 +25,15 @@ You can choose to run it from Android Studio or not
 - Click the play icon or <kbd>CMD</kbd> + <kbd>R</kbd>
 - Grab a coffee
 
+#### Tests
+- Open a terminal in the root of the project
+- Run `./gradlew test`
+
 ### Command Line
 - Navigate to the root of the project
 - Run `./gradlew installDebug`
 - Grab a coffee
+
+### Tests
+- Open a terminal in the root of the project
+- Run `./gradlew test`

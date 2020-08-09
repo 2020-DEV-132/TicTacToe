@@ -1,19 +1,23 @@
 package be.bnp.tictactoe
 
+import be.bnp.tictactoe.exceptions.SpaceOccupiedOnBoardException
+import be.bnp.tictactoe.model.Coordinate
 import be.bnp.tictactoe.model.Symbol
-import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.collections.shouldContainExactly
 
-class BoardFactoryTest : BehaviorSpec() {
+class BoardTest : FreeSpec() {
     init {
-        given("A board factory") {
-            val sut = Board.Factory
-            `when`("constructing the initial board") {
-                then("it should return a 3 by 3 board with all ${Symbol.Blank::class.java.simpleName}s") {
-                    sut.constructBoardState() shouldContainExactly
+        "With an empty board" - {
+            val sut = Board()
+            "when adding a symbol on an empty space" - {
+                val newBoard = sut.addSymbol(Symbol.X, Coordinate(0, 0))
+                "it should have added 'X' on coordinate 0, 0" - {
+                    newBoard.currentState shouldContainExactly
                             listOf(
                                 listOf(
-                                    Symbol.Blank,
+                                    Symbol.X,
                                     Symbol.Blank,
                                     Symbol.Blank
                                 ),
@@ -28,6 +32,14 @@ class BoardFactoryTest : BehaviorSpec() {
                                     Symbol.Blank
                                 )
                             )
+                }
+
+                "when adding a symbol on the same space" - {
+                    "it should throw an ${SpaceOccupiedOnBoardException::class.java.simpleName}" - {
+                        shouldThrow<SpaceOccupiedOnBoardException> {
+                            newBoard.addSymbol(Symbol.X, Coordinate(0, 0))
+                        }
+                    }
                 }
             }
         }
