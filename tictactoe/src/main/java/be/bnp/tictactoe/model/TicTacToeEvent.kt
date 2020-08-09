@@ -2,7 +2,11 @@ package be.bnp.tictactoe.model
 
 sealed class TicTacToeEvent {
     sealed class Information : TicTacToeEvent() {
-        data class SymbolPlaced(val symbol: Symbol, val coordinate: Coordinate) : Information()
+        data class SymbolPlaced(
+            val symbol: Symbol,
+            val coordinate: Coordinate,
+            val currentBoardState: List<Symbol>
+        ) : Information()
     }
 
     sealed class Failure : TicTacToeEvent() {

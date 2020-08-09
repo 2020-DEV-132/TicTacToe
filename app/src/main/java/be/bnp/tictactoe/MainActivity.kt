@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import be.bnp.tictactoe.databinding.ActivityMainBinding
+import be.bnp.tictactoe.model.Symbol
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,11 +24,12 @@ class MainActivity : AppCompatActivity() {
     private val row2Column1 get() = binding.row2Column1
     private val row2Column2 get() = binding.row2Column2
 
-    private val buttons get() = listOf(
-        row0Column0, row0Column1, row0Column2,
-        row1Column0, row1Column1, row1Column2,
-        row2Column0, row2Column1, row2Column2
-    )
+    private val buttons
+        get() = listOf(
+            row0Column0, row0Column1, row0Column2,
+            row1Column0, row1Column1, row1Column2,
+            row2Column0, row2Column1, row2Column2
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModel.uiState.observe({ lifecycle }) {
-            println(it)
+            it.board.forEachIndexed { index, symbol ->
+                fun isClickable() = when (symbol) {
+                    Symbol.X,
+                    Symbol.O -> false
+                    Symbol.Blank -> true
+                }
+
+                fun textForButton() = when(symbol) {
+                    Symbol.X -> getString(R.string.symbol_x)
+                    Symbol.O -> getString(R.string.symbol_o)
+                    Symbol.Blank -> ""
+                }
+
+                with(buttons[index]) {
+                    isEnabled = isClickable()
+                    text = textForButton()
+                }
+            }
         }
 
         setContentView(binding.root)

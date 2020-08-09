@@ -19,6 +19,7 @@
 
     <Button
         android:id="@+id/row0Column1"
+        style="@style/TicTacToe.Widget.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="0,1"
@@ -29,6 +30,7 @@
 
     <Button
         android:id="@+id/row0Column2"
+        style="@style/TicTacToe.Widget.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="0,2"
@@ -39,6 +41,7 @@
 
     <Button
         android:id="@+id/row1Column0"
+        style="@style/TicTacToe.Widget.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="1,0"
@@ -49,6 +52,7 @@
 
     <Button
         android:id="@+id/row1Column1"
+        style="@style/TicTacToe.Widget.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="1,1"
@@ -59,6 +63,7 @@
 
     <Button
         android:id="@+id/row1Column2"
+        style="@style/TicTacToe.Widget.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="1,2"
@@ -69,6 +74,7 @@
 
     <Button
         android:id="@+id/row2Column0"
+        style="@style/TicTacToe.Widget.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="2,0"
@@ -79,6 +85,7 @@
 
     <Button
         android:id="@+id/row2Column1"
+        style="@style/TicTacToe.Widget.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="2,1"
@@ -89,6 +96,7 @@
 
     <Button
         android:id="@+id/row2Column2"
+        style="@style/TicTacToe.Widget.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="2,2"

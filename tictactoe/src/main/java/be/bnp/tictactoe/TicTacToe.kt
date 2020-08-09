@@ -27,7 +27,13 @@ class TicTacToe internal constructor(
 
         try {
             board = board.addSymbol(currSym, coordinate)
-            listener.onEvent(TicTacToeEvent.Information.SymbolPlaced(currSym, coordinate))
+            listener.onEvent(
+                TicTacToeEvent.Information.SymbolPlaced(
+                    currSym,
+                    coordinate,
+                    board.currentState.flatten()
+                )
+            )
 
             val currentPlayerTurns = turnsForCurrentPlayer()
             playerCounts[currSym] = currentPlayerTurns + 1

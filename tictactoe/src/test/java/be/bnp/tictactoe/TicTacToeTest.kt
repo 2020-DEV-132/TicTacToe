@@ -24,7 +24,18 @@ class TicTacToeTest : FreeSpec() {
                         listener.onEvent(
                             TicTacToeEvent.Information.SymbolPlaced(
                                 Symbol.X,
-                                Coordinate(0, 0)
+                                Coordinate(0, 0),
+                                listOf(
+                                    Symbol.X,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank
+                                )
                             )
                         )
                     }
