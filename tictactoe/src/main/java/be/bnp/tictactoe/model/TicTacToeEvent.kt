@@ -11,4 +11,8 @@ sealed class TicTacToeEvent {
             val coordinate: Coordinate
         ) : Failure()
     }
+
+    sealed class GameOver : TicTacToeEvent() {
+        data class Winner(val winner: Symbol) : GameOver()
+    }
 }

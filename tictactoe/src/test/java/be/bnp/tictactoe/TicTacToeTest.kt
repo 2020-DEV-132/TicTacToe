@@ -45,5 +45,40 @@ class TicTacToeTest : FreeSpec() {
                 }
             }
         }
+
+        "A game of TicTacToe with X in the lead" - {
+            val sut = TicTacToe(
+                listener, Board(
+                    listOf(
+                        listOf(
+                            Symbol.X,
+                            Symbol.X,
+                            Symbol.Blank
+                        ),
+                        listOf(
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank
+                        ),
+                        listOf(
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank
+                        )
+                    )
+                )
+            )
+
+            "when 'X' makes a winning move" - {
+                sut.addSymbol(Coordinate(0, 2))
+                "then the listener should notify us that we have a winner" - {
+                    verify {
+                        listener.onEvent(
+                            TicTacToeEvent.GameOver.Winner(Symbol.X)
+                        )
+                    }
+                }
+            }
+        }
     }
 }
