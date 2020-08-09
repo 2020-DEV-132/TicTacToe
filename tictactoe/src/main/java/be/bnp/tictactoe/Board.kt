@@ -7,7 +7,7 @@ import be.bnp.tictactoe.matchers.VerticalTicTacToeMatchStrategy
 import be.bnp.tictactoe.model.Coordinate
 import be.bnp.tictactoe.model.Symbol
 
-class Board(internal val currentState: List<List<Symbol>> = constructBoardState()) {
+internal class Board(internal val currentState: List<List<Symbol>> = constructBoardState()) {
 
     private val matchStrategies = listOf(
         HorizontalTicTacToeMatchStrategy,
