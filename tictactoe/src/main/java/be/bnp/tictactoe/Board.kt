@@ -17,6 +17,9 @@ class Board(internal val currentState: List<List<Symbol>> = constructBoardState(
             }
     }
 
+    val hasBlanks
+        get() = currentState.flatten().firstOrNull { it is Symbol.Blank } != null
+
     private fun constructBoardStateWithSymbolOnCoordinate(coordinate: Coordinate, newSymbol: Symbol) =
         constructBoardState { (x, y) ->
             if (coordinate.x == x && coordinate.y == y) {
