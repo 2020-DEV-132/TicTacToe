@@ -8,17 +8,34 @@ import be.bnp.tictactoe.model.Coordinate
 import be.bnp.tictactoe.model.Symbol
 import be.bnp.tictactoe.model.TicTacToeEvent
 
-data class UiState(val board: List<Symbol> = emptyList())
+data class UiState(
+    val board: List<Symbol> = emptyList(),
+    val gameOverText: String? = null
+) {
+    val isGameOver: Boolean get() = gameOverText?.isNotBlank() ?: false
+}
 
 class MainViewModel : ViewModel() {
     private val ticTacToe = TicTacToe(object : TicTacToe.TicTacToeEventListener {
         override fun onEvent(event: TicTacToeEvent) {
             val newState = when (event) {
                 is TicTacToeEvent.Information.SymbolPlaced -> uiState.value?.copy(board = event.currentBoardState)
-                is TicTacToeEvent.Failure.SpaceWasAlreadyOccupied -> TODO()
-                is TicTacToeEvent.GameOver.Winner -> TODO()
-                TicTacToeEvent.GameOver.Tie -> TODO()
-                is TicTacToeEvent.GameOver.MaximumTurnsReached -> TODO()
+                is TicTacToeEvent.Failure.SpaceWasAlreadyOccupied -> uiState.value
+                is TicTacToeEvent.GameOver -> {
+                    val gameOverText = when (event) {
+                        is TicTacToeEvent.GameOver.Winner ->
+                            "We have a winner! ${event.winner}"
+                        TicTacToeEvent.GameOver.Tie ->
+                            "We have a tie! Nobody won. Better luck next time!"
+                        is TicTacToeEvent.GameOver.MaximumTurnsReached ->
+                            "The maximum turns have been reached. ${event.winner} is the winner!"
+                    }
+                    uiState.value?.copy(gameOverText = gameOverText)
+                }
+                is TicTacToeEvent.Information.NewGame -> uiState.value?.copy(
+                    board = event.currentBoardState,
+                    gameOverText = null
+                )
             }
             _uiState.value = newState
         }
@@ -31,4 +48,6 @@ class MainViewModel : ViewModel() {
         val coordinates = view.tag.toString().split(",").map { it.toInt() }
         ticTacToe.addSymbol(Coordinate(coordinates[0], coordinates[1]))
     }
+
+    fun onNewGame() = ticTacToe.startANewGame()
 }

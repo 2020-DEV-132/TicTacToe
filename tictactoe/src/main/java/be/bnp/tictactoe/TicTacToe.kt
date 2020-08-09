@@ -47,16 +47,40 @@ class TicTacToe internal constructor(
         }
 
         if (board.hasThreeInARow) {
-            listener.onEvent(TicTacToeEvent.GameOver.Winner(currSym))
+            listener.onEvent(TicTacToeEvent.GameOver.Winner(currSym, board.currentState.flatten()))
+            return
         }
 
         if (!board.hasBlanks) {
             listener.onEvent(TicTacToeEvent.GameOver.Tie)
+            return
         }
 
         if (turnsForCurrentPlayer() == WINNING_ATTEMPTS) {
-            listener.onEvent(TicTacToeEvent.GameOver.MaximumTurnsReached(currSym))
+            listener.onEvent(
+                TicTacToeEvent.GameOver.MaximumTurnsReached(
+                    currSym,
+                    board.currentState.flatten()
+                )
+            )
+            return
         }
+    }
+
+    fun startANewGame() {
+        board = Board()
+        currentSymbolIsX = true
+        playerCounts[Symbol.X] = 0
+        playerCounts[Symbol.O] = 0
+
+        listener.onEvent(
+            TicTacToeEvent.Information.NewGame(
+                board.currentState.flatten(),
+                currentSymbol,
+                playerCounts.getValue(Symbol.X),
+                playerCounts.getValue(Symbol.O)
+            )
+        )
     }
 
     interface TicTacToeEventListener {

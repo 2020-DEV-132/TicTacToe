@@ -10,24 +10,7 @@ class BoardFactoryTest : BehaviorSpec() {
             val sut = Board.Factory
             `when`("constructing the initial board") {
                 then("it should return a 3 by 3 board with all ${Symbol.Blank::class.java.simpleName}s") {
-                    sut.constructBoardState() shouldContainExactly
-                            listOf(
-                                listOf(
-                                    Symbol.Blank,
-                                    Symbol.Blank,
-                                    Symbol.Blank
-                                ),
-                                listOf(
-                                    Symbol.Blank,
-                                    Symbol.Blank,
-                                    Symbol.Blank
-                                ),
-                                listOf(
-                                    Symbol.Blank,
-                                    Symbol.Blank,
-                                    Symbol.Blank
-                                )
-                            )
+                    sut.constructBoardState() shouldContainExactly blankBoard
                 }
             }
         }

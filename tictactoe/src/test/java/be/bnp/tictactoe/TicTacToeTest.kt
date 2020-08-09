@@ -85,7 +85,19 @@ class TicTacToeTest : FreeSpec() {
                 "then the listener should notify us that we have a winner" - {
                     verify {
                         listener.onEvent(
-                            TicTacToeEvent.GameOver.Winner(Symbol.X)
+                            TicTacToeEvent.GameOver.Winner(Symbol.X,
+                                listOf(
+                                    Symbol.X,
+                                    Symbol.X,
+                                    Symbol.X,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank
+                                )
+                            )
                         )
                     }
                 }
@@ -97,7 +109,7 @@ class TicTacToeTest : FreeSpec() {
                 listener, Board(
                     listOf(
                         listOf(Symbol.Blank, Symbol.X, Symbol.O),
-                        listOf(Symbol.X,     Symbol.O, Symbol.X),
+                        listOf(Symbol.O,     Symbol.O, Symbol.X),
                         listOf(Symbol.X,     Symbol.O, Symbol.X)
                     )
                 )
@@ -130,7 +142,41 @@ class TicTacToeTest : FreeSpec() {
                 sut.addSymbol(Coordinate(0, 0))
                 "then it should notify us that the maximum turns have been reached" - {
                     verify {
-                        listener.onEvent(TicTacToeEvent.GameOver.MaximumTurnsReached(Symbol.X))
+                        listener.onEvent(
+                            TicTacToeEvent.GameOver.MaximumTurnsReached(
+                                Symbol.X,
+                                listOf(
+                                    Symbol.X,
+                                    Symbol.X,
+                                    Symbol.O,
+                                    Symbol.O,
+                                    Symbol.O,
+                                    Symbol.X,
+                                    Symbol.Blank,
+                                    Symbol.Blank,
+                                    Symbol.Blank
+                                )
+                            )
+                        )
+                    }
+                }
+            }
+        }
+
+        "A game of TicTacToe" - {
+            val sut = TicTacToe(listener)
+            "when a new game is started" - {
+                sut.startANewGame()
+                "then it should notify the listener" - {
+                    verify {
+                        listener.onEvent(
+                            TicTacToeEvent.Information.NewGame(
+                                blankBoard.flatten(),
+                                Symbol.X,
+                                0,
+                                0
+                            )
+                        )
                     }
                 }
             }

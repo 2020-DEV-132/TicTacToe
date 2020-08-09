@@ -2,6 +2,7 @@ package be.bnp.tictactoe
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                     Symbol.Blank -> true
                 }
 
-                fun textForButton() = when(symbol) {
+                fun textForButton() = when (symbol) {
                     Symbol.X -> getString(R.string.symbol_x)
                     Symbol.O -> getString(R.string.symbol_o)
                     Symbol.Blank -> ""
@@ -58,6 +59,15 @@ class MainActivity : AppCompatActivity() {
                     isEnabled = isClickable()
                     text = textForButton()
                 }
+            }
+
+            if (it.isGameOver) {
+                AlertDialog.Builder(this)
+                    .setMessage(it.gameOverText!!)
+                    .setPositiveButton(R.string.replay) { _, _ ->
+                        mainViewModel.onNewGame()
+                    }
+                    .show()
             }
         }
 

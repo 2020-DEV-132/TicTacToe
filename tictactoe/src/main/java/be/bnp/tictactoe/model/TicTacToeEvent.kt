@@ -7,6 +7,14 @@ sealed class TicTacToeEvent {
             val coordinate: Coordinate,
             val currentBoardState: List<Symbol>
         ) : Information()
+
+        data class NewGame(
+            val currentBoardState: List<Symbol>,
+            val currentSymbol: Symbol,
+            val xTurns: Int,
+            val yTurns: Int
+        ) :
+            TicTacToeEvent()
     }
 
     sealed class Failure : TicTacToeEvent() {
@@ -17,8 +25,9 @@ sealed class TicTacToeEvent {
     }
 
     sealed class GameOver : TicTacToeEvent() {
-        data class Winner(val winner: Symbol) : GameOver()
+        data class Winner(val winner: Symbol, val currentBoardState: List<Symbol>) : GameOver()
         object Tie : GameOver()
-        data class MaximumTurnsReached(val winner: Symbol) : GameOver()
+        data class MaximumTurnsReached(val winner: Symbol, val currentBoardState: List<Symbol>) :
+            GameOver()
     }
 }

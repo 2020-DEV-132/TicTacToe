@@ -3,6 +3,24 @@ package be.bnp.tictactoe
 import be.bnp.tictactoe.model.Symbol
 
 // Re-usable test cases
+val blankBoard = listOf(
+    listOf(
+        Symbol.Blank,
+        Symbol.Blank,
+        Symbol.Blank
+    ),
+    listOf(
+        Symbol.Blank,
+        Symbol.Blank,
+        Symbol.Blank
+    ),
+    listOf(
+        Symbol.Blank,
+        Symbol.Blank,
+        Symbol.Blank
+    )
+)
+
 val noMatchTestCase = listOf(
     listOf(Symbol.X,     Symbol.O,     Symbol.X),
     listOf(Symbol.X,     Symbol.X,     Symbol.O),
