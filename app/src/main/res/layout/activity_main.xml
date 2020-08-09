@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/row0Column0"
+        style="@style/TicTacToe.Widget.Button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="0,0"
+        app:layout_constraintBottom_toTopOf="@id/row1Column0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/row0Column1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/row0Column1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="0,1"
+        app:layout_constraintBottom_toBottomOf="@id/row0Column0"
+        app:layout_constraintLeft_toRightOf="@id/row0Column0"
+        app:layout_constraintRight_toLeftOf="@id/row0Column2"
+        app:layout_constraintTop_toTopOf="@id/row0Column0" />
+
+    <Button
+        android:id="@+id/row0Column2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="0,2"
+        app:layout_constraintBottom_toBottomOf="@id/row0Column0"
+        app:layout_constraintLeft_toRightOf="@id/row0Column1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/row0Column0" />
+
+    <Button
+        android:id="@+id/row1Column0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="1,0"
+        app:layout_constraintBottom_toTopOf="@id/row2Column0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/row1Column1"
+        app:layout_constraintTop_toBottomOf="@id/row0Column0" />
+
+    <Button
+        android:id="@+id/row1Column1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="1,1"
+        app:layout_constraintBottom_toBottomOf="@id/row1Column0"
+        app:layout_constraintLeft_toRightOf="@id/row1Column0"
+        app:layout_constraintRight_toLeftOf="@id/row1Column2"
+        app:layout_constraintTop_toTopOf="@id/row1Column0" />
+
+    <Button
+        android:id="@+id/row1Column2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="1,2"
+        app:layout_constraintBottom_toBottomOf="@id/row1Column0"
+        app:layout_constraintLeft_toRightOf="@id/row1Column1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/row1Column0" />
+
+    <Button
+        android:id="@+id/row2Column0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="2,0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/row2Column1"
+        app:layout_constraintTop_toBottomOf="@id/row1Column0" />
+
+    <Button
+        android:id="@+id/row2Column1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="2,1"
+        app:layout_constraintBottom_toBottomOf="@id/row2Column0"
+        app:layout_constraintLeft_toRightOf="@id/row2Column0"
+        app:layout_constraintRight_toLeftOf="@id/row2Column2"
+        app:layout_constraintTop_toTopOf="@id/row2Column0" />
+
+    <Button
+        android:id="@+id/row2Column2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="2,2"
+        app:layout_constraintBottom_toBottomOf="@id/row2Column0"
+        app:layout_constraintLeft_toRightOf="@id/row2Column1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/row2Column0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

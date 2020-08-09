@@ -1,0 +1,18 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TicTacToe.TextAppearance.Button" parent="TextAppearance.AppCompat.Widget.Button">
+        <item name="android:textSize">90sp</item>
+    </style>
+
+    <style name="TicTacToe.Widget.Button" parent="Widget.AppCompat.Button">
+        <item name="textAllCaps">true</item>
+        <item name="android:textAppearance">@style/TicTacToe.TextAppearance.Button</item>
+    </style>
+</resources>

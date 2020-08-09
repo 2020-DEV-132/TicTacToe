@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="symbol_x">X</string>
+    <string name="symbol_o">O</string>
+</resources>
