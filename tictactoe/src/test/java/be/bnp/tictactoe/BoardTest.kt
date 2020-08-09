@@ -5,6 +5,10 @@ import be.bnp.tictactoe.model.Coordinate
 import be.bnp.tictactoe.model.Symbol
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.data.forAll
+import io.kotest.data.headers
+import io.kotest.data.row
+import io.kotest.data.table
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 
@@ -50,27 +54,22 @@ class BoardTest : FreeSpec() {
         }
 
         "Given a completely filled board" - {
-            val filledBoard = Board(
-                listOf(
-                    listOf(
-                        Symbol.X,
-                        Symbol.X,
-                        Symbol.X
-                    ),
-                    listOf(
-                        Symbol.O,
-                        Symbol.O,
-                        Symbol.O
-                    ),
-                    listOf(
-                        Symbol.X,
-                        Symbol.X,
-                        Symbol.X
-                    )
-                )
-            )
+            val filledBoard = Board(allXTestCase)
             "There shouldn't be any blank spaces" - {
                 filledBoard.hasBlanks shouldBe false
+            }
+        }
+
+        table(
+            headers("description", "testCases", "has match"),
+            row("no matches", noMatchTestCase, false),
+            row("left top to right bottom diagonal match", leftTopToRightBottomTestCase, true),
+            row("bottom left to top right diagonal match", bottomLeftToTopRightTestCase, true),
+            row("horizontal match", horizontalTestCase, true),
+            row("verticalTestCase", verticalTestCase, true)
+        ).forAll { description, testCase, expectedThreeInARow ->
+            description - {
+                Board(testCase).hasThreeInARow shouldBe expectedThreeInARow
             }
         }
     }

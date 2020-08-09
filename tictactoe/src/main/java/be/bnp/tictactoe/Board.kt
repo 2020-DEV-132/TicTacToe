@@ -1,10 +1,19 @@
 package be.bnp.tictactoe
 
 import be.bnp.tictactoe.exceptions.SpaceOccupiedOnBoardException
+import be.bnp.tictactoe.matchers.DiagonalTicTacToeMatchStrategy
+import be.bnp.tictactoe.matchers.HorizontalTicTacToeMatchStrategy
+import be.bnp.tictactoe.matchers.VerticalTicTacToeMatchStrategy
 import be.bnp.tictactoe.model.Coordinate
 import be.bnp.tictactoe.model.Symbol
 
 class Board(internal val currentState: List<List<Symbol>> = constructBoardState()) {
+
+    private val matchStrategies = listOf(
+        HorizontalTicTacToeMatchStrategy,
+        VerticalTicTacToeMatchStrategy(HorizontalTicTacToeMatchStrategy),
+        DiagonalTicTacToeMatchStrategy(HorizontalTicTacToeMatchStrategy)
+    )
 
     companion object Factory {
         internal fun constructBoardState(symbolConstructorFunc: (Coordinate) -> Symbol = { Symbol.Blank }): List<List<Symbol>> =
@@ -20,7 +29,13 @@ class Board(internal val currentState: List<List<Symbol>> = constructBoardState(
     val hasBlanks
         get() = currentState.flatten().firstOrNull { it is Symbol.Blank } != null
 
-    private fun constructBoardStateWithSymbolOnCoordinate(coordinate: Coordinate, newSymbol: Symbol) =
+    val hasThreeInARow: Boolean
+        get() = matchStrategies.map { it.hasMatch(currentState) }.firstOrNull { it } ?: false
+
+    private fun constructBoardStateWithSymbolOnCoordinate(
+        coordinate: Coordinate,
+        newSymbol: Symbol
+    ) =
         constructBoardState { (x, y) ->
             if (coordinate.x == x && coordinate.y == y) {
                 newSymbol
