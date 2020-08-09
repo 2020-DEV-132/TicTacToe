@@ -15,5 +15,6 @@ sealed class TicTacToeEvent {
     sealed class GameOver : TicTacToeEvent() {
         data class Winner(val winner: Symbol) : GameOver()
         object Tie : GameOver()
+        data class MaximumTurnsReached(val winner: Symbol) : GameOver()
     }
 }

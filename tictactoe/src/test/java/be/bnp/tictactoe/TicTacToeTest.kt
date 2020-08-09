@@ -101,5 +101,28 @@ class TicTacToeTest : FreeSpec() {
                 }
             }
         }
+
+        "A new game with one move left for 'X'" - {
+            val sut = TicTacToe(
+                listener,
+                Board(
+                    listOf(
+                        listOf(Symbol.Blank, Symbol.X,     Symbol.O),
+                        listOf(Symbol.O,     Symbol.O,     Symbol.X),
+                        listOf(Symbol.Blank, Symbol.Blank, Symbol.Blank)
+                    )
+                ),
+                mutableMapOf(Symbol.X to 2)
+            )
+
+            "adding the third 'X' to the board" - {
+                sut.addSymbol(Coordinate(0, 0))
+                "then it should notify us that the maximum turns have been reached" - {
+                    verify {
+                        listener.onEvent(TicTacToeEvent.GameOver.MaximumTurnsReached(Symbol.X))
+                    }
+                }
+            }
+        }
     }
 }
