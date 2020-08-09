@@ -125,44 +125,6 @@ class TicTacToeTest : FreeSpec() {
             }
         }
 
-        "A new game with one move left for 'X'" - {
-            val sut = TicTacToe(
-                listener,
-                Board(
-                    listOf(
-                        listOf(Symbol.Blank, Symbol.X,     Symbol.O),
-                        listOf(Symbol.O,     Symbol.O,     Symbol.X),
-                        listOf(Symbol.Blank, Symbol.Blank, Symbol.Blank)
-                    )
-                ),
-                mutableMapOf(Symbol.X to 2)
-            )
-
-            "adding the third 'X' to the board" - {
-                sut.addSymbol(Coordinate(0, 0))
-                "then it should notify us that the maximum turns have been reached" - {
-                    verify {
-                        listener.onEvent(
-                            TicTacToeEvent.GameOver.MaximumTurnsReached(
-                                Symbol.X,
-                                listOf(
-                                    Symbol.X,
-                                    Symbol.X,
-                                    Symbol.O,
-                                    Symbol.O,
-                                    Symbol.O,
-                                    Symbol.X,
-                                    Symbol.Blank,
-                                    Symbol.Blank,
-                                    Symbol.Blank
-                                )
-                            )
-                        )
-                    }
-                }
-            }
-        }
-
         "A game of TicTacToe" - {
             val sut = TicTacToe(listener)
             "when a new game is started" - {
@@ -172,9 +134,7 @@ class TicTacToeTest : FreeSpec() {
                         listener.onEvent(
                             TicTacToeEvent.Information.NewGame(
                                 blankBoard.flatten(),
-                                Symbol.X,
-                                0,
-                                0
+                                Symbol.X
                             )
                         )
                     }

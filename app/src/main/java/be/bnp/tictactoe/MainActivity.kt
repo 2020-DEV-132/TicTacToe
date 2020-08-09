@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
 
             if (it.isGameOver) {
                 AlertDialog.Builder(this)
+                    .setCancelable(false)
                     .setMessage(it.gameOverText!!)
                     .setPositiveButton(R.string.replay) { _, _ ->
                         mainViewModel.onNewGame()

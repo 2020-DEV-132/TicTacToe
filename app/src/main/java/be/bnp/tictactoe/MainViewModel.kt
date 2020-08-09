@@ -27,8 +27,6 @@ class MainViewModel : ViewModel() {
                             "We have a winner! ${event.winner}"
                         TicTacToeEvent.GameOver.Tie ->
                             "We have a tie! Nobody won. Better luck next time!"
-                        is TicTacToeEvent.GameOver.MaximumTurnsReached ->
-                            "The maximum turns have been reached. ${event.winner} is the winner!"
                     }
                     uiState.value?.copy(gameOverText = gameOverText)
                 }
