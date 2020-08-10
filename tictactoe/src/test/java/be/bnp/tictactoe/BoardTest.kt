@@ -51,6 +51,21 @@ class BoardTest : FreeSpec() {
             "`hasBlanks` property should be true" - {
                 emptyBoard.hasBlanks shouldBe true
             }
+
+            "`flatState` should return a flat state of the current state" - {
+                emptyBoard.flatState shouldBe
+                        listOf(
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank,
+                            Symbol.Blank
+                        )
+            }
         }
 
         "Given a completely filled board" - {
@@ -66,7 +81,7 @@ class BoardTest : FreeSpec() {
             row("left top to right bottom diagonal match", leftTopToRightBottomTestCase, true),
             row("bottom left to top right diagonal match", bottomLeftToTopRightTestCase, true),
             row("horizontal match", horizontalTestCase, true),
-            row("verticalTestCase", verticalTestCase, true)
+            row("vertical match", verticalTestCase, true)
         ).forAll { description, testCase, expectedThreeInARow ->
             description - {
                 Board(testCase).hasThreeInARow shouldBe expectedThreeInARow

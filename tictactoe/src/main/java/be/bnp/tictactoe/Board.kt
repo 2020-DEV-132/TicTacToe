@@ -11,8 +11,8 @@ internal class Board(internal val currentState: List<List<Symbol>> = constructBo
 
     private val matchStrategies = listOf(
         HorizontalTicTacToeMatchStrategy,
-        VerticalTicTacToeMatchStrategy(HorizontalTicTacToeMatchStrategy),
-        DiagonalTicTacToeMatchStrategy(HorizontalTicTacToeMatchStrategy)
+        VerticalTicTacToeMatchStrategy(),
+        DiagonalTicTacToeMatchStrategy()
     )
 
     companion object Factory {
@@ -26,8 +26,11 @@ internal class Board(internal val currentState: List<List<Symbol>> = constructBo
             }
     }
 
+    internal val flatState: List<Symbol>
+        get() = currentState.flatten()
+
     val hasBlanks
-        get() = currentState.flatten().firstOrNull { it is Symbol.Blank } != null
+        get() = flatState.firstOrNull { it is Symbol.Blank } != null
 
     val hasThreeInARow: Boolean
         get() = matchStrategies.map { it.hasMatch(currentState) }.firstOrNull { it } ?: false

@@ -71,7 +71,7 @@ class ResetButton : Robot<View> {
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class HelloWorldEspressoTest {
+class TicTacToeUiTest {
 
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java)
