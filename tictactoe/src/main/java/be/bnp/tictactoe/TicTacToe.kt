@@ -24,7 +24,7 @@ class TicTacToe internal constructor(
                 TicTacToeEvent.Information.SymbolPlaced(
                     currSym,
                     coordinate,
-                    board.currentState.flatten()
+                    board.flatState
                 )
             )
         } catch (e: SpaceOccupiedOnBoardException) {
@@ -37,7 +37,7 @@ class TicTacToe internal constructor(
         }
 
         if (board.hasThreeInARow) {
-            listener.onEvent(TicTacToeEvent.GameOver.Winner(currSym, board.currentState.flatten()))
+            listener.onEvent(TicTacToeEvent.GameOver.Winner(currSym, board.flatState))
             return
         }
 
@@ -53,7 +53,7 @@ class TicTacToe internal constructor(
 
         listener.onEvent(
             TicTacToeEvent.Information.NewGame(
-                board.currentState.flatten(),
+                board.flatState,
                 currentSymbol
             )
         )
